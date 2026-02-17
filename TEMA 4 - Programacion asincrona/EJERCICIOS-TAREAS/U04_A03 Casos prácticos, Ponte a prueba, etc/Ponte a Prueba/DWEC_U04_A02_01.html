@@ -1,0 +1,47 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 18/01/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>MediaDevices API</title>
+	</head>
+	<body>
+
+		<video autoplay id="videoDisplay" src=""></video>
+		<div id="errorDisplay"></div>
+
+		<script>
+			const videoDisplay = document.getElementById("videoDisplay");
+			const errorDisplay = document.getElementById("errorDisplay");
+
+			// Opciones de captura
+			const opciones = {
+				audio: false,
+				video: true
+			};
+
+			async function iniciarCamara() {
+				try {
+					// Espera a que el usuario conceda permisos
+					const stream = await navigator.mediaDevices.getUserMedia(opciones);
+
+					// Mostramos el vídeo en el elemento <video>
+					videoDisplay.srcObject = stream;
+
+				} catch (error) {
+					errorDisplay.innerHTML = `Error ${error.message}`;
+				}
+			}
+
+			// Llamada a la función asíncrona
+			iniciarCamara();
+		</script>
+
+		<!-- Prueba de Autoria -->
+		<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+		<p>Fecha de realización: 18/01/2026</p>
+	</body>
+</html>

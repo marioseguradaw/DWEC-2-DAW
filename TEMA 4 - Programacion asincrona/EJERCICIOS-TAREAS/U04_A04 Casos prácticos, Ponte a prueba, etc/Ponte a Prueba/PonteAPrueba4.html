@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Descarga de usuarios con Internet</title>
+    </head>
+    <body>
+        <h2>Descarga de usuarios</h2>
+
+        <script>
+            async function descargarUsuarios() {
+                const controlador = new AbortController();
+                const timeout = 5000; // 5 segundos
+
+                // Cancelar la petición si se supera el tiempo máximo
+                const temporizador = setTimeout(() => {
+                    controlador.abort();
+                },timeout);
+
+                try {
+                    const respuesta = await fetch("DWEC_U04_A04_PP_E.json", {
+                        signal: controlador.signal
+                    });
+
+                    clearTimeout(temporizador);
+
+                    if (!respuesta.ok) {
+                        throw new Error("Error al descargar el archivo JSON");
+                    }
+
+                    const usuarios = await respuesta.json();
+
+                    usuarios.forEach(usuario => {
+                        console.log(`Usuario: ${usuario.apellidos},${usuario.nombre}.`);
+                    });
+                } catch (error) {
+                    if(error.name === "AbortError") {
+                        console.log("La petición ha superado elt tiempo maximo de espera (5 segundos)");
+                    } else {
+                        console.log("Error:", error.message);
+                    }
+                }
+            }
+
+            descargarUsuarios();
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 22/01/2026</p>
+    </body>
+</html>

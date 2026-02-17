@@ -1,0 +1,89 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 20/01/2026 -->
+
+<template id="mi-contador">
+    <style>
+     #contenedor {
+	 padding: 1em;
+	 border: 1px solid black;
+	 display: inline-block;
+     }
+     button {
+	 padding: 1em;
+	 border-radius: 1em;
+	 display: block;
+	 margin: auto;
+     }
+    </style>
+    <div id="contenedor">
+	<!-- Slot -->
+	<slot name="titulo">Título por defecto</slot>
+	<button></button>
+    </div>
+</template>
+
+<script>
+ // Clase que define el comportamiento del contador
+ class MiContador extends HTMLElement {
+     constructor() {
+	 super();
+	 this.cuenta = 0;
+     }
+
+     // Función de cuenta
+     contar() {
+	 this.cuenta++;
+     }
+
+     // Vamos a utilizar Shadow DOM, así que podríamos poner esta
+     // funcionalidad también en el constructor
+     connectedCallback() {
+	 // Creamos el Shadow DOM
+	 const shadow = this.attachShadow({mode: 'open'});
+
+	 // Cargamos la plantilla
+	 let plantilla = document.getElementById('mi-contador'); // Elemento <template>
+	 let plantillaContenido = plantilla.content; // Contenido de la plantilla (nodo tipo 'DocumentFragment')
+
+	 // Se añade al Shadow DOM una COPIA de la plantilla
+	 shadow.append(plantillaContenido.cloneNode(true));
+
+	 // Buscamos el botón dentro del Shadow DOM
+	 let boton = shadow.querySelector("button");
+	 boton.textContent = this.cuenta; // Valor de 'cuenta'
+
+	 // Manejador de evento 'click'
+	 // Función flecha: si se usara una función convencional, la función se ejecutaría
+	 // sin contexto de objeto, por lo que 'this' apuntaría al objeto global
+	 boton.addEventListener("click", () => {
+	     // Cada vez que se pulsa, se llama a la función 'contar'
+	     this.contar()
+	     // Se actualiza el valor del botón
+	     boton.textContent = this.cuenta;
+	 });
+     }
+ }
+
+ // Registro del componente personalizado
+ customElements.define('mi-contador', MiContador);
+</script>
+
+
+<!-- Creamos 3 contadores en el documento HTML con slots distintos-->
+<mi-contador>
+    <h1 slot="titulo">Contador 1</h1>
+</mi-contador>
+
+<mi-contador>
+    <h1 slot="titulo">Contador 2</h1>
+</mi-contador>
+
+<mi-contador></mi-contador>
+
+<!-- Botón normal: vemos que no se le aplican los estilos CSS de la plantilla
+     porque se ha utilizado el Shadow DOM -->
+<button>Botón normal</button>
+
+<!-- Prueba de autoría -->
+<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 20/01/2026</p>

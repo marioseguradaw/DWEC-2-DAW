@@ -1,0 +1,82 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 09/12/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cronómetro sencillo (corregido)</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+    </head>
+    <body>
+        <h1>Cronómetro</h1>
+
+        <div id="tiempo">0</div>
+
+        <button id="inicioParar">Iniciar</button>
+        <button id="reset">Poner a cero</button>
+
+        <script>
+            // Esperamos a que el DOM esté listo
+            window.addEventListener('DOMContentLoaded', () => {
+
+            // Referencias a elementos
+            const pantalla = document.getElementById('tiempo');
+            const btnInicioParar = document.getElementById('inicioParar');
+            const btnReset = document.getElementById('reset');
+
+            // Estado del cronómetro
+            let segundos = 0;
+            let intervalo = null;      // guardará el id devuelto por setInterval
+            let enMarcha = false;
+
+            // Actualiza la pantalla con el valor actual
+            function actualizarPantalla() {
+                pantalla.textContent = segundos;
+            }
+
+            // Función para iniciar el intervalo
+            function iniciarCrono() {
+                if (intervalo !== null) return; // ya iniciado (protección)
+                intervalo = setInterval(() => {
+                    segundos++;
+                    actualizarPantalla();
+                }, 1000);
+                enMarcha = true;
+                btnInicioParar.textContent = 'Parar';
+                console.log('Cronómetro iniciado');
+            }
+
+            // Función para parar el intervalo
+            function pararCrono() {
+                if (intervalo === null) return; // ya parado
+                clearInterval(intervalo);
+                intervalo = null;
+                enMarcha = false;
+                btnInicioParar.textContent = 'Iniciar';
+                console.log('Cronómetro parado');
+            }
+
+            // Toggle inicio/parada
+            btnInicioParar.addEventListener('click', () => {
+                if (!enMarcha) iniciarCrono();
+                else pararCrono();
+            });
+
+            // Reset -> pone a cero y actualiza pantalla
+            btnReset.addEventListener('click', () => {
+                segundos = 0;
+                actualizarPantalla();
+                console.log('Cronómetro a cero');
+            });
+
+            // Inicializar pantalla (por si)
+            actualizarPantalla();
+        });
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 09/12/2025</p>
+    </body>
+</html>

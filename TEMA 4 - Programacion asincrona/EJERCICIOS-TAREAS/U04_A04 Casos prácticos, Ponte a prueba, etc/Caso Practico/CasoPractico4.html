@@ -1,0 +1,54 @@
+<!-- Autor:  Mario Segura Abad -->
+<!-- Fecha: 20/01/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Buscar usuario GitHub</title>
+    </head>
+    <body>
+        <h2>Buscar usuario de GitHub</h2>
+
+        <form id="formulario">
+            <input type="text" id="usuario" placeholder="Nombre de usuario" required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <div id="resultado"></div>
+
+        <script>
+            const formulario = document.getElementById("formulario");
+            const resultado = document.getElementById("resultado");
+
+            formulario.addEventListener("submit", async(event) => {
+                event.preventDefault();
+
+                const usuario = document.getElementById("usuario").value.trim();
+                resultado.innerHTML = "";
+
+                try {
+                    const respuesta = await fetch(`https://api.github.com/users/${user}`);
+
+                    if(!respuesta.ok) {
+                        throw new Error("Usuario no encontrado");
+                    }
+
+                    const datos = await respuesta.json();
+
+                    resultado.innerHTML = `
+                        <p><strong>Login:</strong> ${datos.login}</p>
+                        <img src="${datos.avatar_url}" alt="Avatar de ${datos.login}">
+                    `;
+                } catch (error) {
+                    resultado.innerHTML = `<p class="error">${error.message}</p>`;
+                }
+            }); 
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 20/01/2026</p>
+    </body>
+</html>

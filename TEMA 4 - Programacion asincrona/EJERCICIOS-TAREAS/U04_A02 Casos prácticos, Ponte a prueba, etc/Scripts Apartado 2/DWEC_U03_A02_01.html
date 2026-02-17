@@ -1,0 +1,23 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 11/01/2026 -->
+
+<div id="contenedor">
+    <p>Párrafo 1</p>
+    <p>Párrafo 2</p>
+    <p>Párrafo 3</p>
+</div>
+
+<script>
+    function procesarEvento(evento) {
+        alert(`El evento se ha producido sobre el objeto ${evento.target.tagName}`);
+        alert(`El manejador de eventos es el elemento ${evento.currentTarget.tagName}`);
+    }
+
+    let boton = document.getElementById("contenedor");
+    boton.addEventListener("click", procesarEvento);
+</script>
+
+<!-- Prueba de autoría -->
+<br>
+<p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 11/01/2026</p>
