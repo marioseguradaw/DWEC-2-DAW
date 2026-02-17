@@ -1,0 +1,44 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.5. Parámetros rest y sintaxis spread</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            function sumar(a, b) {
+                return a + b;
+            }
+
+            let numeros1 = [4, 7];
+            sumar(...numeros1); // 11
+
+            let colores1 = ["azul", "rojo", "verde"];
+            let colores2 = colores1; // NO ES UNA COPIA, sino que hay un único array
+            // referenciado por dos variables
+            let colores3 = [...colores1]; // colores3 almacena un ARRAY NUEVO, distinto
+            // del anterior
+            let colores4 = ["cian", ...colores1, "rosa"]; // colores4 almacena un ARRAY 
+            // NUEVO con nuevos elementos
+
+            // Modifico el primer array
+            colores2[0] = "amarillo";
+
+            console.log(colores1[0]); // amarillo
+            console.log(colores2[0]); // amarillo (mismo array)
+            console.log(colores3[0]); // azul (array distinto)
+            console.log(colores4.length); // 5
+            console.log(colores4); // ['cian', 'azul', 'rojo', 'verde', 'rosa']
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 01/10/2025</p>
+    </body>
+</html>

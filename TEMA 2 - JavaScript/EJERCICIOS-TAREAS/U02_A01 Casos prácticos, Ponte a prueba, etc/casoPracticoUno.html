@@ -1,0 +1,46 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 25/09/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso Práctico 1 - Suma de Dos Números</title>
+  </head>
+
+  <body>
+    <h1>Programa de Suma</h1>
+    <button onclick="sumarNumeros()">Sumar Dos Números</button>
+
+    <script>
+      function sumarNumeros() {
+        // Pedimos los números al usuario
+        let numero1 = prompt("Introduzca el primer número:");
+        let numero2 = prompt("Introduzca el segundo número:");
+
+        // Convertimos los valores a números
+        numero1 = parseFloat(numero1);
+        numero2 = parseFloat(numero2);
+
+        // Comprobamos si los valores son válidos
+        if(isNaN(numero1) || isNaN(numero2)) {
+          alert("Por favor, introduzca valores numéricos válidos.");
+          return;
+        }
+
+        // Calculamos la suma
+        let suma = numero1 + numero2;
+
+        // Mostramos la alerta con dos lineas
+        alert("El resultado de sumar "+numero1+" y "+numero2+" es "+suma+".\nGracias por utilizar este programa. ¡Vuelva pronto!");
+      }
+    </script>
+
+    <!-- Prueba de Autoría -->
+    <footer>
+      <p>Autor: Mario Segura Abad<br></p>
+      <p>Fecha de realización: 25/09/2025</p>
+    </footer>
+  </body>
+</html>

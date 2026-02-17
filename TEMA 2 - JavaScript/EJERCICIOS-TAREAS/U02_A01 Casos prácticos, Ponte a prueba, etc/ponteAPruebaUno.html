@@ -1,0 +1,35 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 25/09/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponte a Prueba 1 - Ámbito de Variables</title>
+  </head>
+ 
+  <body>
+    <h1>Identificar Ámbito de Variables</h1>
+
+    <script>
+      for(var i = 0; i < 5; i++) {
+        console.log(i);
+      }
+      console.log(i);
+      // 1. Declaración: "i" se declara con "var"
+            // - "var" tiene ámbito de función o global si está fuera de cualquier funcion.
+            // - Por eso, "i" sigue existiendo después del bucle.
+      // 2. Ejecución del bucle:
+            // - Se imprimen los números del 0 al 4 dentro del bucle.
+      // 3. "console.log(i)" después del bucle:
+            // - "i" sigue existiendo y su valor final es "5" (ya que después de la última iteración "i++" incrementa a 5 y sale del bucle).
+    </script>
+
+    <!-- Prueba de Autoría -->
+    <footer>
+      <p>Autor: Mario Segura Abad</p>
+      <p>Fecha de realización: 25/09/2025</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.6. Ámbitos y closures</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            function crearContador() {
+                let cuenta = 0;
+
+                // Función closure
+                return function() {
+                    // Referencia a la variable "cuenta" del ámbito exterior a la función
+                    return cuenta++;
+                };
+            }
+
+            let contador1 = crearContador();
+            console.log("Contador1: ", contador1()); // 0
+            console.log("Contador1: ", contador1()); // 1
+            console.log("Contador1: ", contador1()); // 2
+            
+            let contador2 = crearContador();
+            console.log("Contador2: ", contador2()); // 0
+            console.log("Contador2: ", contador2()); // 1
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 01/10/2025</p>
+    </body>
+</html>

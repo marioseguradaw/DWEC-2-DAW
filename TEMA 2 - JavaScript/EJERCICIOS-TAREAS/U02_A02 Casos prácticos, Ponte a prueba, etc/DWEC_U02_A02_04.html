@@ -1,0 +1,33 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.4. Funciones flecha</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            let func = (par1, par2,... parN) => expresión;
+
+            // El cuerpo de la función sólo tiene una línea. Se pueden
+            // omitir las llaves y el 'return'
+            let sumar = (a, b) => a + b;
+
+            // El cuerpo de la función tiene varias líneas. Se deben
+            // incluir llaves y el 'return'
+            let restar = (a, b) => {
+                console.log("Restando");
+                return a - b;
+            }
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 01/10/2025</p>
+    </body>
+</html>

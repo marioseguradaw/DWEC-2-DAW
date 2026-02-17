@@ -1,0 +1,41 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 07/10/2025-->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3.9. Clases</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            // 3.9. Clases
+
+            // Definición de clase
+            class Usuario {
+                constructor(nombre, apellidos) {
+                    this.nombre = nombre;
+                    this.apellidos = apellidos;
+                }
+
+                // No hay coma entre las definiciones de los métodos
+
+                saludar() {
+                    console.log(`Me llamo ${this.nombre} ${this.apellidos}`);
+                }
+            }
+
+            // Creación de un objeto basado en la clase
+            // (En realidad, es un objeto cuyo prototipo es el objeto Usuario)
+            let usuario = new Usuario("David", "Pérez");
+            usuario.saludar(); // Me llamo David Pérez
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 07/10/2025</p>
+    </body>
+</html>

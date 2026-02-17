@@ -1,0 +1,33 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 07/10/2025-->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3.10. JSON</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            // 3.10. JSON
+            let usuario = {
+                nombre: "David",
+                edad: 25,
+                permisos: ["administrador", "editor"]
+            }
+
+            let cadenaJson = JSON.stringify(usuario);
+            // cadenaJson es un string
+
+            let usuarioRecuperado = JSON.parse(cadenaJson);
+            // usuarioRecuperado es un objeto
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 07/10/2025</p>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 10/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestor de Gastos</title>
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <h1>Gestor de Gastos Personales</h1>
+
+        <section class="formulario">
+            <h2>Registrar gastos</h2>
+            <form id="formGasto">
+                <label>Descripción:</label>
+                <input type="text" id="descripcion" required>
+
+                <label>Importe (€):</label>
+                <input type="number" id="importe" min="0" step="0.01" required>
+
+                <label>Categoría:</label>
+                <select id="categoria">
+                    <option>Alimentación</option>
+                    <option>Transporte</option>
+                    <option>Ocio</option>
+                    <option>Vivienda</option>
+                    <option>Otros</option>
+                </select>
+
+                <button type="submit">Añadir gasto</button>
+            </form>
+        </section>
+
+        <section class="listado">
+            <h2>Listado de gastos</h2>
+            <ul id="listaGastos"></ul>
+        </section>
+
+        <section class="total">
+            <h2>Total gastado: <span id="total">0.00</span> €</h2>
+        </section>
+
+        <section class="grafico">
+            <h2>Gastos por categoría</h2>
+            <canvas id="gastosChart" width="400" height="400"></canvas>
+        </section>
+
+        <!-- Chart.js como script normal, NO type="module" -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- app.js y chart.js -->
+        <script src="app.js"></script>
+        <script src="chart.js"></script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 10/10/2025</p>
+    </body>
+</html>

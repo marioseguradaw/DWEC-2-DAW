@@ -1,0 +1,55 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 05/10/2025-->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>U02_A02_Ejercicio - Sucesión de Fibonacci</title>
+    </head>
+    <body>
+        <h2>Sucesión de Fibonacci (Función Recursiva)</h2>
+
+        <label for="n">Introduce un número n (>= 0)</label>
+        <input type="number" id="n" min="0">
+        <button onclick="mostrarFibonacci()">Calcular</button>
+
+        <div id="resultado" style="margin-top: 15px;"></div>
+
+        <script>
+            //Función recursiva de Fibonacci
+            function fibonacci(n) {
+                if(n === 0) {
+                    return 0; // Caso base 1
+                } else if(n === 1) {
+                    return 1; // Caso base 2
+                } else {
+                    // Llamadas recursivas
+                    return fibonacci(n - 1) + fibonacci(n - 2);
+                }
+            }
+
+            // Función que muestra la secuencia hasta F(n)
+            function mostrarFibonacci() {
+                const n = parseInt(document.getElementById("n").value);
+                const resultadoDivision = document.getElementById("resultado");
+
+                if(isNaN(n) || n < 0) {
+                    resultadoDivision.innerHTML = "<b>Por favor, introduce un número mayor o igual a 0.</b>";
+                    return;
+                }
+
+                let salida = "";
+                for(let i = 0; i <= n; i++) {
+                    salida += `F(${i}) = ${fibonacci(i)}<br>`;
+                }
+                resultadoDivision.innerHTML = salida;
+            }
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p><br>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 05/10/2025</p>
+    </body>
+</html>

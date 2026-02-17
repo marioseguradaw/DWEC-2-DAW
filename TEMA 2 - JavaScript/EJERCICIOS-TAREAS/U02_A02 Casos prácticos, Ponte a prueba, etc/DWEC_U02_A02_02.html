@@ -1,0 +1,40 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.2. Funciones como valor</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+        <script>
+            // 2.2. Funciones como valor
+            function sumar(a, b) {
+                return a + b;
+            }
+            let suma1 = sumar(4,5); // suma1 = 9
+            let funcSuma = sumar; // funcSuma almacena la función, no el resultado de su ejecución
+            funcSuma(3,4); // 7
+            let suma2 = funcSuma(3,6); // suma2 = 9
+
+            function sumar(a, b) {
+                return a + b;
+            }
+            function restar(a, b) {
+                return a - b;
+            }
+            function operar(operacion, a, b) {
+                return operacion(a,b);
+            }
+            let v1 = operar(sumar, 4, 5); // v1 = 9
+            let v2 = operar(restar, 4, 5); // v2 = -1
+        </script>
+
+        <!-- Prueba de autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 01/10/2025</p>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.3. Funciones anónimas</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+        <script>
+            // 2.3. Funciones anónimas
+            let sumar = function(a, b) {
+                return a + b;
+            }
+
+            let v1 = sumar(4, 5); // 9
+
+            let sumar2 = function sumar(a, b) {
+                return a + b;
+            }
+
+            let v2 = sumar(4, 5); // 9
+
+            function confirmar(pregunta, si, no) {
+                if(confirm(pregunta)) {
+                    si();
+                } else {
+                    no();
+                }
+            }
+
+            // En este caso, las funciones de callback se crean in situ como funciones anónimas
+            confirmar("¿Sabes que es un callback?",
+                function() {
+                    console.log("Has respondido que sí");
+                }, function() {
+                    console.log("Has respondido que no");
+                });
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 01/10/2025</p>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 31/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>  
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ponte a Prueba 6</title>
+    </head>
+    <body>
+        <h1>Ponte a prueba 6 - Manejo de errores en funciones</h1>
+        <p>Abre la consola del navegador (F12->Consola) para ver los resultados.<br><br><br></p>
+
+        <script>
+            function procesar(mensaje) {
+                try {
+                    return mensaje.data;
+                } catch (error) {
+                    console.error("Error: el parámetro 'mensaje' no es válido porque no tiene la propiedad 'data'.");
+                    return -1;
+                }
+            }
+
+            // Pruebas
+            console.log("Caso 1: objeto con propiedad data");
+            console.log(procesar({data: "Hola mundo"})); // Devuelve "Hola mundo"
+
+            console.log("Caso 2: sin pasar parámetro");
+            console.log(procesar()); // Error --> devuelve -1
+
+            console.log("Caso 3: parámetro null");
+            console.log(procesar(null)); // Error --> devuelve -1
+
+            console.log("Caso 4: objeto sin propiedad data");
+            console.log(procesar({ mensaje: "Hola" })); // No lanza error, pero devuelve undefined
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: <strong>Mario Segura Abad</strong><br></p>
+        <p>Fecha de realización: 31/10/2025</p>
+    </body>
+</html>

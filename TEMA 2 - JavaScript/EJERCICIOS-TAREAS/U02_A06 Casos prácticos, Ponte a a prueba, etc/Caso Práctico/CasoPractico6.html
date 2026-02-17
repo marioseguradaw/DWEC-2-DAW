@@ -1,0 +1,89 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 30/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caso Práctico 6 - Modo estricto en JavaScript</title>
+    </head>
+    <body>
+        <h1>Caso práctico 6: Comprobación del modo estricto</h1>
+        <p>Abre la consola del navegador (F12->Consola) para ver los resultados.</p>
+        <h2>1. Ejecución convencional (sin modo estricto)</h2>
+
+        <script>
+            function Enemigo(s, f) {
+                salud = s;
+                fuerza = f;
+            }
+
+            Enemigo.prototype.atacar = function() {
+                console.log(`Atacando con fuerza ${fuerza}`);
+            }
+
+            let enemigo1 = new Enemigo(50, 20);
+            let enemigo2 = new Enemigo(40, 15);
+
+            console.log("Resultado ejecución convencional:");
+            enemigo1.atacar();
+            enemigo2.atacar();
+        </script>
+
+        <hr>
+
+        <h2>2. Ejecución con modo estricto</h2>
+
+        <script>
+            "use strict";
+            try {
+                function Enemigo(s, f) {
+                    salud = s; // ERROR en modo estricto
+                    fuerza = f;
+                }
+                Enemigo.prototype.atacar = function() {
+                    console.log(`Atacando con fuerza ${fuerza}`);
+                }
+
+                let enemigo1 = new Enemigo(50, 20);
+                let enemigo2 = new Enemigo(40, 15);
+
+                console.log("Resultado con 'use strict':");
+                enemigo1.atacar();
+                enemigo2.atacar();
+            } catch (e) {
+                console.error("Error en modo estricto:", e.message);
+            }
+        </script>
+
+        <hr>
+
+        <h2>3. Ejecución con type="module"<br><br><br></h2>
+
+        <script>
+            try {
+                function Enemigo(s, f) {
+                    salud = s; // También dará error, pues los módulos utilizan modo estricto por defecto
+                    fuerza = f; 
+                }
+                Enemigo.prototype.atacar = function() {
+                    console.log(`Atacando con fuerza ${fuerza}`);
+                }
+
+                let enemigo1 = new Enemigo(50, 20);
+                let enemigo2 = new Enemigo(40, 15);
+
+                console.log("Resultado con type='module':");
+                enemigo1.atacar();
+                enemigo2.atacar();
+            } catch (e) {
+                console.error("Error en script con type='module':", e.message);
+            }
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: <strong>Mario Segura Abad</strong><br></p>
+        <p>Fecha de realización: 30/10/2025</p>
+    </body>
+</html>

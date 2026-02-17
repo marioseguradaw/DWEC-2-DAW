@@ -1,0 +1,32 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 21/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>U02_A04_Ejercicio - Cronómetro</title>
+    </head>
+    <body>
+        <h1>Cronómetro con JavaScript</h1>
+
+        <div id="contenedor" style="display:flex; align-items:center; justify-content:left; gap:5px;">
+            <div class="cronometro" id="Horas">00:</div>
+            <div class="cronometro" id="Minutos">00:</div>
+            <div class="cronometro" id="Segundos">00:</div>
+            <div class="cronometro" id="Milisegundos">00</div>
+
+            <input type="button" class="boton" id="inicio" value="Arrancar" onclick="inicio();">
+            <input type="button" class="boton" id="parar" value="Parar" onclick="parar();" disabled>
+            <input type="button" class="boton" id="continuar" value="Continuar" onclick="inicio();" disabled>
+            <input type="button" class="boton" id="reinicio" value="Reiniciar" onclick="reinicio();" disabled>
+        </div>
+
+        <script src="cronometro.js"></script>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 21/10/2025</p>
+    </body>
+</html>

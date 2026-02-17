@@ -1,0 +1,34 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 16/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caso práctico 4 - Módulos</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script type="module">
+            import { Enemigo, Orco, Troll } from './enemigos.js';
+
+            // Crear objetos de cada clase
+            const enemigo = new Enemigo(10);
+            const orco = new Orco(10, 15);
+            const troll = new Troll(10, 20);
+
+            // Probar métodos
+            enemigo.mover(); // Propiedad de Enemigo: 10
+            orco.mover(); // Propiedad de Enemigo: 10
+            orco.disparar(); // Propiedad de Orco: 15
+            troll.mover(); // Propiedad de Enemigo: 10
+            troll.golpear(); // Propiedad de Troll: 20
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 16/10/2025</p>
+    </body>
+</html>

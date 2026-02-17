@@ -1,0 +1,29 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 07/10/20525-->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3.7. Prototipos y herencia</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            // 3.7. Prototipos y herencia
+            let usuario = {
+                nombre: "David"
+            }
+
+            // El método 'toLocaleString' funciona, pese a no haberlo definido
+            // Esta función está definida en 'Object.prototype'
+            usuario.toLocaleString(); // '[object Object]'
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 07/10/2025</p>
+    </body>
+</html>

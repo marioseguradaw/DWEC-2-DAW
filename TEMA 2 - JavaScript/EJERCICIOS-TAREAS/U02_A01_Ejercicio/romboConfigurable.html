@@ -1,0 +1,73 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 29/09/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rombo configurable</title>
+    </head>
+    <body>
+        <h2>Abre la consola (F12) para ver el rombo</h2>
+        <script>
+            let filas = parseInt(prompt("Introduce un número impar de filas (mínimo 3, no 1):"));
+
+            if (isNaN(filas) || filas < 3 || filas % 2 === 0) {
+                console.log("Número inválido. Debe ser un número impar mayor o igual a 3.");
+            } else {
+                let mitad = Math.floor(filas / 2);
+
+                // Parte superior
+                for (let i = 0; i <= mitad; i++) {
+                    let linea = "";
+
+                    // espacios de sangría (para centrar)
+                    for (let s = 0; s < (mitad - i) * 2; s++) {
+                        linea += " ";
+                    }
+
+                    // primer asterisco
+                    linea += "*";
+
+                    // espacios internos
+                    if (i > 0) {
+                        for (let j = 0; j < i * 3; j++) {
+                        linea += " ";
+                        }
+                        // segundo asterisco
+                        linea += "*";
+                    }
+
+                    console.log(linea);
+                }
+
+                // Parte inferior
+                for (let i = mitad - 1; i >= 0; i--) {
+                    let linea = "";
+
+                    // espacios de sangría
+                    for (let s = 0; s < (mitad - i) * 2; s++) {
+                        linea += " ";
+                    }
+
+                    // primer asterisco
+                    linea += "*";
+
+                    // espacios internos
+                        if (i > 0) {
+                            for (let j = 0; j < i * 3; j++) {
+                                linea += " ";
+                            }
+                            // segundo asterisco
+                            linea += "*";
+                        }
+
+                        console.log(linea);
+                }
+            }
+        </script>
+
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 29/09/2025</p>
+    </body>
+</html>

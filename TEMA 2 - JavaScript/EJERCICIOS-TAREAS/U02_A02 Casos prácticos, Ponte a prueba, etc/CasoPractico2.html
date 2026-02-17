@@ -1,0 +1,41 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caso Práctico 2 - Funciones con parámetros variables</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            function media(...numeros) {
+                // 'numeros' será un array con todos los parámetros recibidos
+                // Ejemplos: media(2,4) --> numeros = [2,4]
+
+                if(numeros.length === 0) {
+                    return 0; // Si no se pasan parámetros --> devolvemos 0
+                }
+
+                let suma = 0;
+                for(let num of numeros) {
+                    suma += num; // Sumamos cada número
+                }
+                return suma / numeros.length; // Media aritmética
+            }
+
+            // --- Ejemplos de uso ---
+            console.log("Media1: ", media()); // 0
+            console.log("Media2: ", media(2, 4)); // 3
+            console.log("Media3: ", media(1)); // 1
+            console.log("Media4: ", media(3, 5, 7, 14)); // 7.25
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 01/10/2025</p>
+    </body>
+</html>

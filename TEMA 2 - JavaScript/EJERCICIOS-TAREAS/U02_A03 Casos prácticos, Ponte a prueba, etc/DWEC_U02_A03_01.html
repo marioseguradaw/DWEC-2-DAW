@@ -1,0 +1,52 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 07/10/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3.1. Objetos: principios básicos</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12) para ver el resultado</h1>
+
+        <script>
+            // 3.1. Objetos: principios básicos
+            let coche = {
+                color: "rojo",
+                marca: "seat",
+                arrancar: function() {
+                    console.log("Arrancando");
+                }
+            }
+
+            console.log(coche.color); // rojo
+            console.log(coche.marca); // seat
+            coche.arrancar(); // Arrancando
+
+            coche.modelo = "ibiza";
+            coche["combustible"] = "diesel";
+
+            for(let prop in coche) {
+                console.log(prop);
+            }
+
+            // color
+            // marca
+            // arrancar
+
+            let persona = {
+                edad: 20,
+                nombre: "David"
+            }
+
+            console.log("edad" in persona); // true
+            console.log("apellido" in persona); // false
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <p>Autor: Mario Segura Abad<br></p>
+        <p>Fecha de realización: 07/10/2025</p>
+    </body>
+</html>
