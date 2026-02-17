@@ -1,0 +1,44 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 24/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caso Práctico 4 - Web Components</title>
+    </head>
+    <body>
+        <h2>Chistes con Web Components</h2>
+
+        <!-- Plantilla -->
+        <template id="tpl-chiste">
+            <div class="chiste">
+                <p class="enunciado"></p>
+                <button>Ver respuesta</button>
+            </div>
+        </template>
+
+        <!-- Aquí aparecerán los chistes -->
+        <div id="contenedor"></div>
+
+        <!-- Archivo con el array de chistes -->
+        <script src="DWEC_U03_A04_CP_E.js"></script>
+
+        <!-- Componente -->
+        <script src="DWEC_U03_A04_CP_E_COMPONENT.js"></script>
+
+        <!-- Creación de los elementos -->
+        <script>
+            chistes.forEach(chiste => {
+                const elem = document.createElement("mi-chiste");
+                elem.datos = chiste; // pasamos datos al componente
+                document.getElementById("contenedor").appendChild(elem);
+            });
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 24/11/2025</p>
+    </body>
+</html>

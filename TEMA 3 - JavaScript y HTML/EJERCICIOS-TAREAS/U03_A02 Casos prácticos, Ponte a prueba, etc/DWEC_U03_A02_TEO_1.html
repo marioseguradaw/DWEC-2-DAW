@@ -1,0 +1,26 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 15/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.1. Eventos: tipos</title>
+    </head>
+    <body>
+        <button id="boton" onclick="saludar()">Pulsa el botón</button>
+
+        <script>
+            function saludar() {
+                alert("Hola Mundo!");
+            }
+
+            document.getElementById("boton").onclick = saludar;
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 15/11/2025</p>
+    </body>
+</html>

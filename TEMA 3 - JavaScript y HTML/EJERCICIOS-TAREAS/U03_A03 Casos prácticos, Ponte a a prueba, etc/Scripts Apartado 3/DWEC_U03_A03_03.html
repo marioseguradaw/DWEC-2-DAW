@@ -1,0 +1,51 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 04/12/2025 -->
+
+
+<!-- Validación HTML5 desactivada (atributo 'novalidate') -->
+<form onSubmit="enviarFormulario(event)" novalidate>
+    <div>
+	<label for="name">Nombre</label>
+	<!-- Validación HTML5 (atributo 'required') -->
+	<input v-model="name" id="name" type="text" required>
+    </div>
+    <div>
+	<label for="email">Email</label>
+	<!-- Validación HTML5 (atributo 'required') -->
+	<input v-model="email" id="email" type="email" required>
+    </div>
+    <div>
+	<button type="submit">Enviar</button>
+    </div>
+</form>
+
+<script>
+ function enviarFormulario(evento) {
+     // Esta función se ejecuta SIEMPRE, dado que la validación HTML5 del formulario está desactivada
+
+     // Prevenir el envío por defecto del formulario
+     evento.preventDefault();
+
+     // Aquí vendría la lógica de proceso de datos
+     // o rutinas de validación adicionales que no puedan
+     // ser realizadas mediante HTML5 únicamente
+
+     // Adicionalmente, se comprueba la validación
+     if (event.target.reportValidity()) {
+	 // Este bloque se ejecuta solo si el formulario no contiene errores
+	 // Podemos utilizar también 'checkValidity()', en cuyo caso
+	 // no se mostrarían los mensajes HTML5
+
+	 // Envío del formulario
+	 alert("Enviando");
+	 evento.target.submit();
+     } else {
+	 // Si hay errores de validación se ejecuta este bloque
+	 alert("El formulario contiene errores!");
+     }
+ }
+</script>
+
+<!-- Prueba de autoría -->
+<br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 04/12/2025</p>

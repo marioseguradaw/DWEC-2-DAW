@@ -1,0 +1,40 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 04/12/2025 -->
+
+<form onSubmit="enviarFormulario(event)">
+    <div>
+	<label for="name">Nombre</label>
+	<!-- Validación HTML5 (atributo 'required') -->
+	<input v-model="name" id="name" type="text" required>
+    </div>
+    <div>
+	<label for="email">Email</label>
+	<!-- Validación HTML5 (atributo 'required') -->
+	<input v-model="email" id="email" type="email" required>
+    </div>
+    <div>
+	<button type="submit">Enviar</button>
+    </div>
+</form>
+
+<script>
+ function enviarFormulario(evento) {
+     // Esta función solo se ejecuta si la validación HTML5 del formulario
+     // es correcta
+
+     // Prevenir el envío por defecto del formulario
+     evento.preventDefault();
+
+     // Aquí vendría la lógica de proceso de datos
+     // o rutinas de validación adicionales que no puedan
+     // ser realizadas mediante HTML5 únicamente
+
+     // Una vez realizado el procesamiento, se envía el formulario
+     alert("Enviando");
+     evento.target.submit();
+ }
+</script>
+
+<!-- Prueba de autoría -->
+<br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 04/12/2025</p>

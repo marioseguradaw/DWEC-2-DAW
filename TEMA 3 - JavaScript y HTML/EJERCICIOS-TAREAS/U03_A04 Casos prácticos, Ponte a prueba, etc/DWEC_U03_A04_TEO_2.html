@@ -1,0 +1,25 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 23/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>4.2. Shadow DOM</title>
+    </head>
+    <body>
+        <p class="parrafo" id="p1">Párrafo 1</p>
+        <p class="parrafo" id="p2">Párrafo 2</p>
+
+        <mi-elemento id="elem1">
+            <!-- Su contenido está creado en el Shadow DOM en modo 'open' -->
+            <p class="parrafo" id="p1">Párrafo 3</p> <!-- Es válido: 'p1' está aislado del DOM exterior -->
+            <p class="parrafo" id="p4">Párrafo 4</p>
+        </mi-elemento>
+
+        <!-- Prueba de Autoría -->
+        <br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 23/11/2025</p>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 16/11/2025 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+		<title>Unidad 3 - Ponte a Prueba</title>
+		<style>
+	 		#rejilla {
+	     		width: 50vw;
+	     		height: 50vh;
+	     		margin: auto;
+	     		display: grid;
+	     		grid-template-columns: 1fr 1fr 1fr 1fr;
+	     		gap: 1em;
+	     		justify-content: stretch;
+	 		}
+
+	 		.celda {
+	     		cursor: pointer;
+	     		padding: 1em;
+	     		background-color: #c2d9ed;
+	     		display: flex;
+	     		align-items: center;
+	     		justify-content: center;
+	 		}
+
+	 		.activa {
+	     		background-color: #6ea8db;
+	 		}
+		</style>
+    </head>
+    <body>
+		<div id="rejilla">
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda activa">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+	    	<div class="celda">celda</div>
+		</div>
+
+		<!-- Prueba de Autoría -->
+		<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+		<p>Fecha de realización: 16/11/2025</p>
+    </body>
+
+    <script>
+		document.getElementById("rejilla").addEventListener("click", function(evento) {
+
+			// Verificamos que el click viene de una celda
+			if(evento.target.classList.contains("celda")) {
+				evento.target.classList.toggle("activa");
+			}
+		});
+    </script>
+</html>

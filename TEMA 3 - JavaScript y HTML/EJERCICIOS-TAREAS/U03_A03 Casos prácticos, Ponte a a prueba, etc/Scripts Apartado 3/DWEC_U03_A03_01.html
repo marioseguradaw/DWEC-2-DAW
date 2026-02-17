@@ -1,0 +1,62 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 04/12/2025 -->
+
+<form name="formeventos">
+    <p>
+	<label for="campo0">
+	    Prueba de evento focus: accede al campo mediante ratón o tabulador.
+	</label>
+	<input id="campo0" name="campo0" type="text" onfocus="funcionFocus(event)">
+	<span id="pruebaFocus"></span>
+    </p>
+    <p>
+	<label for="campo1">
+	    Prueba de evento blur: accede al campo y a continuación haz que pierda el foco.
+	</label>
+	<input id="campo1" name="campo1" type="text" onBlur="funcionBlur(event)">
+	<span id="pruebaBlur"></span>
+    </p>
+    <p>
+	<label for="campo2">
+	    Prueba de evento change: escribe un texto y luego haz click fuera del campo.
+	</label>
+	<input id="campo2" name="campo2" type="text" onChange="funcionChange(event)">
+	<span id="pruebaChange"></span>
+    </p>
+    <p>
+	<label for="campo3">
+	    Prueba de evento input: escribe un texto y comprueba que se actualiza directamente.
+	</label>
+	<input id="campo3" name="campo3" type="text" onInput="funcionInput(event)">
+	<span id="pruebaInput"></span>
+    </p>
+</form>
+
+<script>
+ let pruebaFocus = document.getElementById("pruebaFocus");
+ let pruebaBlur = document.getElementById("pruebaBlur");
+ let pruebaChange = document.getElementById("pruebaChange");
+ let pruebaInput = document.getElementById("pruebaInput");
+
+ function funcionFocus(event) {
+     pruebaFocus.textContent = "Acabas de entrar en el campo";
+ }
+
+ function funcionBlur(event) {
+     pruebaBlur.textContent = "Acabas de salir del campo";
+ }
+
+ function funcionChange(event) {
+     // event.target.value almacena el texto escrito en el campo de formulario
+     pruebaChange.textContent = event.target.value;
+ }
+
+ function funcionInput(event) {
+     // event.target.value almacena el texto escrito en el campo de formulario
+     pruebaInput.textContent = event.target.value;
+ }
+</script>
+
+<!-- Prueba de autoría -->
+<br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 04/12/2025</p>

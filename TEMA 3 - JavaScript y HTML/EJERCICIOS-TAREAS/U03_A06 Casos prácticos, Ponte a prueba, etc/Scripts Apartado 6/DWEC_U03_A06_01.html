@@ -1,0 +1,76 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/12/2025 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DWEC_U03_A06_01 - Métodos de usuario</title>
+    </head>
+    <body>
+        <h1>Abrir la consola (F12 -> Consola) para ver los resultados</h1>
+
+        <script>
+            // Almacenamiento de un valor sencillo
+            localStorage.setItem("clave1", "valor1");
+
+            // Objeto simple
+            let usuario1 = {
+                nombre: "Ana",
+                apellidos: "López"
+            };
+            // Almacenamiento del objeto mediante JSON
+            localStorage.claveUsuario1 = JSON.stringify(usuario1); // claveUsuario1 = '{"nombre":"Ana","apellidos":"López"}'
+
+            // Objeto con métodos definidos
+            // Prototipo
+            let Usuario = {
+                saludar: function() {
+	                console.log(`Hola, soy ${this.nombre} ${this.apellidos}`);
+                }
+            }
+            let usuario2 = Object.create(Usuario);
+            usuario2.nombre = "Laura";
+            usuario2.apellidos = "Martínez";
+
+            // Almacenamiento del objeto mediante JSON
+            localStorage.claveUsuario2 = JSON.stringify(usuario2);  // claveUsuario1 = '{"nombre":"Laura","apellidos":"Martínez"}'
+
+            // Recuperación de 'clave1'
+            console.log(localStorage.clave1); // 'valor1'
+
+            // Recuperación de 'claveUsuario1'
+            console.log(localStorage.getItem("claveUsuario1")); // {"nombre":"Ana","apellidos":"López"}
+
+            // Recuperación de 'claveUsuario2'
+            console.log(localStorage.claveUsuario2); // {"nombre":"Laura","apellidos":"Martínez"}
+
+            // Recuperación del objeto
+            let usuario1Recuperado = JSON.parse(localStorage.claveUsuario1);
+            usuario1Recuperado.nombre; // Ana
+            usuario1Recuperado.nombre; // López
+
+            // Recuperación de 'claveUsuario2'
+            let usuario2MalRecuperado = JSON.parse(localStorage.claveUsuario2);
+            usuario2MalRecuperado.nombre; // Laura
+            usuario2MalRecuperado.nombre; // Martínez
+
+            // Error: el usuario recuperado no tiene el método 'saludar' definido
+            // TypeError: usuario2Recuperado.saludar is not a function
+            // usuario2MalRecuperado.saludar();
+
+            // Alternativa: rehidratar el objeto
+            // Primero, enlazamos al prototipo para tener acceso a 'saludar'
+            let usuario2BienRecuperado = Object.create(Usuario);
+            // A continuación, copiamos las propiedades de datos del objeto obtenido del almacenamiento
+            Object.assign(usuario2BienRecuperado, JSON.parse(localStorage.claveUsuario2));
+
+            usuario2BienRecuperado.saludar(); // "Hola, soy Laura Martínez"
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 01/12/2025</p>
+    </body>
+</html>

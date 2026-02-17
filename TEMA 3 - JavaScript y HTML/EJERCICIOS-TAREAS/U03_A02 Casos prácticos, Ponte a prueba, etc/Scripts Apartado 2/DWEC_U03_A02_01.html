@@ -1,0 +1,35 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 16/11/2025 -->
+
+<div id="contenedor">
+    <!-- Tres párrafos dentro del div -->
+    <p>Párrafo 1</p>
+    <p>Párrafo 2</p>
+    <p>Párrafo 3</p>
+</div>
+
+<script>
+    // Esta función será llamada cada vez que se haga click dentro del contenedor.
+    // "evento" contiene toda la información del click.
+    function procesarEvento(evento) {
+
+        // evento.target -> el elemento exacto donde el usuario hizo click.
+        // Si clicas sobre el texto "Párrafo 2", evento.target será <p>
+        alert(`El evento se ha producido sobre el objeto ${evento.target.tagName}`);
+
+        // evento.currentTarget -> el elemento que tiene asociado el listener.
+        // Aquí siempre será <div id="contenedor"> porque ahí pusimos addEventListener.
+        alert(`El manejador de eventos es el elemento ${evento.currentTarget.tagName}`);
+    }
+
+    // Obtenemos el DIV que contiene los párrafos
+    let boton = document.getElementById("contenedor");
+
+    // Añadimos un único listener al contenedor.
+    // Gracias a la delegación de eventos, también detecta clicks en los <p>.
+    boton.addEventListener("click", procesarEvento);
+</script>
+
+<!-- Prueba de autoría -->
+<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 16/11/2025</p>

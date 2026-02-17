@@ -1,0 +1,50 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 04/12/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3.1. Interacción con formularios</title>
+    </head>
+    <body>
+        <form name="datospersonales">
+            <input name="nombre" type="text" value="José">
+            <input name="nombre" type="text" value="Pérez">
+        </form>
+
+        <form name="datoslaborales">
+            <input name="profesion" type="text" value="desarrollador web">
+            <div class="detalles">
+                <input name="cargo" type="text" value="programador junior">
+            </div>
+        </form>
+
+        <script>
+            let formDatosPersonales = document.forms.datospersonales;
+            // o también mediante document.forms[0]
+
+            let formDatosLaborales = document.forms.datoslaborales;
+            // o también mediante document.forms[1]
+
+            let nombre = formDatosPersonales.elements.nombre.value; // José
+            let apellidos = formDatosPersonales.elements.apellidos.value; // Pérez
+
+            let profesion = formDatosLaborales.elements.profesion.value; // desarrollador web
+            // Da igual que <input name="cargo"> esté dentro de un 'div' para acceder a su propiedad
+            let cargo = formDatosLaborales.elements.cargo.value; // programador junior
+
+            let formDatosPersonales2 = document.forms.datospersonales;
+
+            let elemNombre = formDatosPersonales.elements.nombre;
+
+            // Aceso al formulario desde el campo
+            console.log(elemNombre.form); // El elemento <form name="datospersonales">
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 04/12/2025</p>
+    </body>
+</html>

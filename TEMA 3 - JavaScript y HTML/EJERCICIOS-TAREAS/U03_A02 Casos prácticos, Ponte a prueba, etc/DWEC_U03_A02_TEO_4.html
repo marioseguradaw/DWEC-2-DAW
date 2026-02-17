@@ -1,0 +1,28 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 15/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.1. Eventos: tipos</title>
+    </head>
+    <body>
+        <button id="boton">Pulsa el botón</button>
+
+        <script>
+            function saludar(evento) {
+                console.log(`El evento se ha producido sobre el objeto ${this}`);
+                console.log(`Evento de tipo ${evento.type} sobre el elemento ${evento.currentTarget}.`);
+            }
+
+            let boton = document.getElementById("boton");
+            boton.addEventListener("click", saludar);
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 15/11/2025</p>
+    </body>
+</html>

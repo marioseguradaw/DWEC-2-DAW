@@ -1,0 +1,60 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 16/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caso Práctico 2</title>
+    </head>
+    <body>
+        <h2>Chistes</h2><br>
+        <div id="contenedor"></div>
+
+        <!-- Archivo que contiene el aarray "chistes" -->
+        <script src="DWEC_U03_A02_CP_E.js"></script>
+
+        <script>
+            // Objeto manejador de eventos
+            const verRespuesta = {
+                respuesta: "",
+                handleEvent(evento) {
+                    alert(this.respuesta);
+                }
+            };
+
+            // Contenedor donde se mostrarán los chistes
+            const contenedor = document.getElementById("contenedor");
+
+            // Generar dinámicamente los chistes
+            chistes.forEach(chiste => {
+
+                // Crear el div del chiste
+                const div = document.createElement("div");
+                div.className = "chiste";
+
+                // Añadir el enunciado
+                const p = document.createElement("p");
+                p.textContent = chiste.enunciado;
+                div.appendChild(p);
+
+                // Crear el botón
+                const boton = document.createElement("button");
+                boton.textContent = "Ver respuesta";
+
+                // Asignar manejador con los datos del chiste
+                let manejador = Object.create(verRespuesta);
+                manejador.respuesta = chiste.respuesta;
+                boton.addEventListener("click", manejador);
+
+                div.appendChild(boton);
+                contenedor.appendChild(div);
+            });
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 16/11/2025</p>
+    </body>
+</html>

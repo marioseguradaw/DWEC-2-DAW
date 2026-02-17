@@ -1,0 +1,38 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 24/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>4.4. Slots</title>
+    </head>
+    <body>
+        <mi-contador>
+            <span>Texto personalizado</span>
+        </mi-contador>
+
+        <!-- Suponiendo que que se instancia en un Componente personalizado 'mi-componente' -->
+        <template>
+            <div>
+                <slot name="texto">Texto por defecto</slot>
+            </div>
+        </template>
+
+        <mi-componente>
+            <br><br><span slot="texto">Juan</span>
+        </mi-componente>
+
+        <mi-componente>
+            <p slot="texto">Laura</p>
+        </mi-componente>
+
+        <mi-componente>
+        </mi-componente>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 24/11/2025</p>
+    </body>
+</html>

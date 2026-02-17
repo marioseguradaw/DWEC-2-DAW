@@ -1,0 +1,60 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 01/12/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ponte a Prueba 6 - Preferencia de idioma</title>
+    </head>
+    <body>
+        <h1>Preferencia de idioma</h1>
+
+        <p>Idioma actual: <strong id="idiomaActual"></strong></p>
+
+        <form id="formIdioma">
+            <label for="campoIdioma">Cambiar idoma:</label>
+            <input type="text" id="campoIdioma" name="idioma">
+            <button type="submit">Guardar preferencia</button>
+        </form>
+
+        <script>
+            // Se ejecuta cuando la página ha cargado completamente
+            window.addEventListener("DOMContentLoaded", function() {
+
+                // 1. Recuperar idioma del localStorage
+                let idioma = localStorage.getItem("idioma");
+
+                // 2. Si no hay idioma, usar "castellano"
+                if(!idioma) {
+                    idioma = "castellano";
+                }
+
+                // 3. Mostrarlo en la página y en el formulario
+                document.getElementById("idiomaActual").textContent = idioma;
+                document.getElementById("campoIdioma").value = idioma;
+            });
+
+            // 4. Gestionar el envío del formulario
+            document.getElementById("formIdioma").addEventListener("submit", function(evento) {
+                evento.preventDefault(); // Evita recargar la página
+
+                // Obtener lo que ha escrito el usuario
+                const nuevoIdioma = document.getElementById("campoIdioma").value;
+
+                // Guardarlo en localStorage
+                localStorage.setItem("idioma", nuevoIdioma);
+
+                // Actualizar la vista
+                document.getElementById("idiomaActual").textContent = nuevoIdioma;
+
+                alert("Preferencia de idioma guardada correctamente.");
+            });
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 01/12/2025</p>
+    </body>
+</html>

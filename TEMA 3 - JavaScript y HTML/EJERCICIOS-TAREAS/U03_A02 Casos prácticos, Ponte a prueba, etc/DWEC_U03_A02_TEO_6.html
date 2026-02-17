@@ -1,0 +1,30 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 16/11/2025 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2.4. Comportamiento por defecto</title>
+    </head>
+    <body>
+        <a href="https://google.es" onclick="accion1(event)">Ir a Google</a><br>
+        <a href="https://google.es" onclick="accion2(event)">Ir a Google</a>
+
+        <script>
+            function accion1(evento) {
+                console.log("Se ejecuta el código y se va a Google");
+            }
+
+            function accion2(evento) {
+                evento.preventDefault();
+                console.log("Se ejecuta el código y NO se va a Google");
+            }
+        </script>
+
+        <!-- Prueba de Autoría -->
+        <br><br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 15/11/2025</p>
+    </body>
+</html>
