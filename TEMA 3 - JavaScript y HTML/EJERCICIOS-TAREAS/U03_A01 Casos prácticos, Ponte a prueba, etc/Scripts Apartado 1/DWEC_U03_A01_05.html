@@ -1,0 +1,38 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 11/11/2025 -->
+
+
+<!-- Div con dos clases iniciales: clase1 y clase2 -->
+<div class="clase1 clase2">
+    Clases
+</div>
+
+<!-- Div con dos clases iniciales: clase1 y clase2 -->
+<script>
+    // Seleccionamos el primer elemento con clase "clase1"
+    let div1 = document.querySelector(".clase1");
+     
+    // .classList.add("clase3") --> añade una clase al elemento
+    div1.classList.add("clase3");
+    console.log(div1.className); // Resultado: clase1 clase2 clase3
+
+    // .classList.remove("clase2") --> elimina la clase indicada
+    div1.classList.remove("clase2");
+    console.log(div1.className);  // clase1 clase3
+
+    // .classList.toggle("clse4") --> si la clase no existe, la añade; si existe, la elimina
+    div1.classList.toggle("clase4");
+    console.log(div1.className);  // Resultado: clase1 clase3 clase4
+    console.log(div1.classList.contains("clase4")); // true -> porque acabamos de añadirla
+
+    // Volvemos a hacer toggle sobre "clase4" -> ahora se elimina
+    div1.classList.toggle("clase4");
+    console.log(div1.className);  // Resultado: clase1 clase3
+
+    // Comprobamos de nuevo si contiene "clase4"
+    console.log(div1.classList.contains("clase4")); // false -> porque ya se eliminó
+</script>
+
+<!-- Prueba de Autoría -->
+<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 11/11/2025</p>

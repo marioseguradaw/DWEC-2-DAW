@@ -1,0 +1,26 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 11/11/2025 -->
+
+
+<!-- Contenedor principal -->
+<div class="principal">
+    <!-- Lista de personas -->
+    <ul class="personas">
+        <!-- Cada <li> tiene un atributo personalizado "data-nombre" -->
+	    <li class="persona" data-nombre="P1">Persona 1</li>
+	    <li class="persona" data-nombre="P2">Persona 2</li>
+    </ul>
+</div>
+
+<script>
+    // Seleccionamos el primer elemento con clase "persona"
+    let persona1 = document.querySelector(".persona");
+    // Los atributos que empiezan por "data-" se pueden acceder con la propiedad .dataset
+    // En este caso, "data-nombre" se convierte en persona1.dataset.nombre
+    // Mostramos su valor en una alerta --> "P1"
+    alert(persona1.dataset.nombre); // P1
+</script>
+
+<!-- Prueba de Autoría -->
+<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 11/11/2025</p>

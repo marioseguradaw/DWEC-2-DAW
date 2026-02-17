@@ -1,0 +1,43 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 11/11/2025 -->
+
+<div class="principal">
+    <ul class="personas">
+	    <li class="persona">Persona 1</li>
+	    <li class="persona">Persona 2</li>
+    </ul>
+</div>
+
+<script>
+    let personas = document.querySelector(".personas");
+
+    // Creamos un elemento nuevo (vacío)
+    let nuevaPersona = document.createElement("li");
+    // Añadimos texto al elemento creado
+    nuevaPersona.textContent = "Persona 3";
+
+    // Se añade el elemento al final
+    personas.append(nuevaPersona);
+
+    // Se elimina el primer elemento
+    let persona1 = document.querySelector(".persona");
+    persona1.remove();
+
+    // Se clona la lista de personas (clonado superficial)
+    // Al ser un clonado superficial, solo se crea el elemento <ul> vacío
+    // (No se verá nada en pantalla)
+    let clonPersonas1 = personas.cloneNode();
+    // Se añade después de la lista original
+    personas.after(clonPersonas1);
+
+    // Se clona la lista de personas (clonado profundo)
+    // El clonado profundo incluye los descendientes de la lista
+    // Se verá por tanto una copia de la lista completa
+    let clonPersonas2 = personas.cloneNode(true);
+    // Se añade antes de la lista original
+    personas.before(clonPersonas2);
+</script>
+
+<!-- Prueba de autoría -->
+<br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 11/11/2025</p>

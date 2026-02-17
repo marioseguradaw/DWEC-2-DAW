@@ -1,0 +1,51 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 11/11/2025 -->
+
+<!-- Contenedor principal -->
+<div class="principal">
+    <!-- Lista inicial de personas -->
+    <ul class="personas">
+	    <li class="persona">Persona 1</li>
+	    <li class="persona">Persona 2</li>
+    </ul>
+
+    <!-- Contenedor vacío para insertar HTML interpretado -->
+    <div class="mensajeHTML">
+    </div>
+
+    <!-- Contenedor vacío que será reemplazado completamente -->
+    <div class="mensajeHTML2">
+    </div>
+
+    <!--  Contenedor vacío para insertar texto plano -->
+    <div class="mensajeTexto">
+    </div>
+</div>
+
+<script>
+    // Seleccionamos el <ul> con clase "personas"
+    let personas = document.querySelector(".personas");
+
+    // Se reemplaza el contenido interno de <ul class="personas">
+    // Los <li> originales se eliminan y se insertan estos nuevos
+    personas.innerHTML = `
+        <li class="persona">Persona Nueva 1</li>
+        <li class="persona">Persona Nueva 2</li>
+    `;
+
+    // .innerHTML inserta contenido interpretando etiquetas HTML
+    // Aquí se añade un párrafo con <p> y <b>
+    document.querySelector(".mensajeHTML").innerHTML = "<p>Mensaje con <b>HTML</b>.</p>";
+
+    // .outerHTML reemplaza TODO el elemento seleccionado por el nuevo contenido
+    // El <div class="mensajeHTML2"> desaparece y se sustituye por un <h1>
+    document.querySelector(".mensajeHTML2").outerHTML = "<h1 class='mensajeHTML2'>Mensaje con <b>HTML</b> reemplazando el elemento.</h1>";
+
+    // .textContent inserta texto plano (no interpreta etiquetas HTML)
+    // Por eso las etiquetas <p> y <b> aparecen como texto literal en pantalla
+    document.querySelector(".mensajeTexto").textContent = "<p>Mensaje con <b>texto</b> (las etiquetas aparecen como texto normal).</p>";
+</script>
+
+<!-- Prueba de Autoría -->
+<br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 11/11/2025</p>

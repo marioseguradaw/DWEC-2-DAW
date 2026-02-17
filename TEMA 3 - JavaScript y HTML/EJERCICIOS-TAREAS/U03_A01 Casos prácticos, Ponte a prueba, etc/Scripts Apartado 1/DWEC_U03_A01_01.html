@@ -1,0 +1,46 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 11/11/2025 -->
+
+<!-- Contenedor principal -->
+<div class="principal">
+    <!-- Lista con clase "personas" -->
+    <ul class="personas">
+        <!-- Elemento de la lista con. clase "persona"-->
+	    <li class="persona">Persona 1</li>
+	    <li class="persona">Persona 2</li>
+    </ul>
+</div>
+
+<script>
+    // Seleccionamos el <ul> con clase "personas"
+    let personas = document.querySelector(".personas");
+    // Seleccionamos el primer <li> con clase "persona"
+    let persona1 = document.querySelector(".persona");
+
+    // .closest() busca el ancestro más cercano que cumpla el selector
+    console.log(persona1.closest(".personas"));
+    // Devuelve <ul class="personas">
+
+    // El ancestro más cercano con clase "principal" es el <div>
+    console.log(persona1.closest(".principal"));
+
+    // Devuelve <div class="principal">
+
+    // Repetimos para confirmar que funciona igual
+    console.log(persona1.closest(".principal"));
+    // Devuelve <div class="principal">
+    console.log(persona1.closest(".personas"));
+    // Devuelve <ul class="personas">
+    
+    // .matches() comprueba si el elemento coincide con un selector CSS
+    console.log(personas.matches(".principal .personas")); // true --> el <ul> está dentro de .principal
+    console.log(personas.matches(".principal")); // false --> el <ul> no tiene clase "principal"
+
+    // .contains() verifica si un elemento está dentro de otro en el DOM
+    console.log(personas.contains(persona1)); // true --> el <ul> contiene al <li>
+    console.log(persona1.contains(personas)); // false --> el <li> no contiene al <ul>
+</script>
+
+<!-- Prueba de Autoría -->
+<br><p>Autor: <strong>Mario Segura Abad</strong></p>
+<p>Fecha de realización: 11/11/2025</p>
