@@ -48,3 +48,12 @@ El proyecto debe:
 8. Revisar la consola para ver mensajes de autoría.
 
 **Ponte a prueba 1 - Gulp + minificación CSS**
+1. Crear dos archivos CSS en el directorio raíz.
+2. Crear `gulpfile.js` con la tarea de minificación.
+3. Ejecutar la tarea --> `npx gulp NOMBRE_TAREA`.
+4. Verificar que se cree la carpeta `dist/` con los CSS minificados.
+5. Revisar la consola para ver mensajes de autoria.
+
+## Autoría
+- Autor: __Mario Segura Abad__
+- Fecha de realización: 16/02/2026
