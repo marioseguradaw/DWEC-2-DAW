@@ -1,5 +1,5 @@
 // Autor: Mario Segura Abad
-// Fecha: 26/02/2026
+// Fecha: 27/02/2026
 
 
 // Librería de acceso a datos
@@ -21,10 +21,10 @@ function cambiarFicheroDatos(nombre) {
 // Debe devolver una promesa que cuando se resuelva devuelva el array de gastos del usuario
 function obtenerGastosUsuario(usuario) {
     return fs.readFile(ficheroDatos, 'utf-8')
-        .then(data => {
-            const db = JSON.parse(data);
-            // Si el usuario existe devolvemos sus gastos, sino, array vacío
-            return db[usuario] || [];
+        .then(datos => {
+            const bd = JSON.parse(datos);
+
+            return bd[usuario] || [];
         });
 }
 
@@ -32,19 +32,16 @@ function obtenerGastosUsuario(usuario) {
 // y actualizado el fichero de datos
 function anyadirGastoUsuario(usuario, gasto) {
     return fs.readFile(ficheroDatos, 'utf-8')
-        .then(data => {
-            const db = JSON.parse(data);
+        .then(datos => {
+            const bd = JSON.parse(datos);
 
-            // Si el usuario no existe, se creará
-            if (!db[usuario]) {
-                db[usuario] = [];
+            if (!bd[usuario]) {
+                return bd[usuario] = [];
             }
 
-            // Añadimos el gasto al array de usuario
-            db[usuario].push(gasto);
+            bd[usuario].push(gasto);
 
-            // Escribimos los datos actualizados (JSON.stringify con null, 2 para formato legible)
-            return fs.writeFile(ficheroDatos, JSON.stringify(db, null, 2));
+            return fs.writeFile(ficheroDatos, JSON.stringify(bd, null, 2));
         });
 }
 
@@ -52,29 +49,25 @@ function anyadirGastoUsuario(usuario, gasto) {
 // y actualizado el fichero de datos
 function actualizarGastoUsuario(usuario, gastoId, nuevosDatos) {
     return fs.readFile(ficheroDatos, 'utf-8')
-        .then(data => {
-            const db = JSON.parse(data);
+        .then(datos => {
+            const bd = JSON.parse(datos);
 
-            // En el caso de que el usuario no exista, se generará un error
-            if (!db[usuario]) {
+            if (!bd[usuario]) {
                 throw new Error(`El usuario ${usuario} no existe.`);
             }
 
-            // Buscamos el índice del gasto a modificar
-            const indiceGasto = db[usuario].findIndex(g => g.id === gastoId);
+            const gastosModificados = bd[usuario].findIndex(g => g.id === gastoId);
 
-            // En el caso de que el gasto no exista, se generará un error
-            if (indiceGasto === -1) {
-                throw new Error(`El gasto con ID ${gastoId} no existe.`);
+            if (gastosModificados === -1) {
+                throw new Error(`El gasto con el ID ${gastoId} no existe.`);
             }
 
-            // Actualizamos los datos mezclando lo anterior con lo nuevo
-            db[usuario][indiceGasto] = {
+            bd[usuario][gastosModificados] = {
                 ...nuevosDatos,
                 id: gastoId
             };
 
-            return fs.writeFile(ficheroDatos, JSON.stringify(db, null, 2));
+            return fs.writeFile(ficheroDatos, JSON.stringify(bd, null, 2));
         });
 }
 
@@ -82,19 +75,17 @@ function actualizarGastoUsuario(usuario, gastoId, nuevosDatos) {
 // y actualizado el fichero de datos
 function borrarGastoUsuario(usuario, gastoId) {
     return fs.readFile(ficheroDatos, 'utf-8')
-        .then(data => {
-            const db = JSON.parse(data);
+        .then(datos => {
+            const bd = JSON.parse(datos);
 
-            // En el caso de que el usuario indicado no exista, se generará  un error
-            if (!db[usuario]) {
+            if (!bd[usuario]) {
                 throw new Error(`El usuario ${usuario} no existe.`);
             }
 
-            // Eliminamos el gasto filtrando el array para excluir ese ID
-            const gastosFiltrados = db[usuario].filter(g => g.id !== gastoId);
-            db[usuario] = gastosFiltrados;
+            const gastosFiltrados = bd[usuario].filter(g => g.id !== gastoId);
+            bd[usuario] = gastosFiltrados;
 
-            return fs.writeFile(ficheroDatos, JSON.stringify(db, null, 2));
+            return fs.writeFile(ficheroDatos, JSON.stringify(bd, null, 2));
         });
 }
 
