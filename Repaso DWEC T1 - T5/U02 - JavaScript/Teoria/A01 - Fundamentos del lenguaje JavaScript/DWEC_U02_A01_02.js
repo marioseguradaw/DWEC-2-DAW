@@ -25,3 +25,10 @@ isNaN("5rt"); // true (no es un numero válido)
 isNaN("541"); // false
 isNaN("285.32"); // false
 isNaN("2e16"); // false
+
+/* Comprobación ===, !== */
+let (0 == false); // true
+let ('' == false); // true
+
+let (0 === false); // false (distinto tipo)
+let ('' === false); // false (distinto tipo)
