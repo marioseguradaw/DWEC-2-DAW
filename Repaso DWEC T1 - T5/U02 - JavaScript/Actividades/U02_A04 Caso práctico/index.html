@@ -1,0 +1,45 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 03/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caso Práctico 4 - Modulos</title>
+    </head>
+    <body>
+        <h1>Caso Práctico 4: Módulos activos</h1>
+        <p>Abre la consola del navegador (F12) para ver los objetos creados.</p>
+
+        <script type="module">
+            import { Enemigo, Orco, Troll } from './enemigos.js';
+
+            // Creación de un enemigo de cada tipo
+            const enemigoComun = new Enemigo();
+            const orcoSalvaje = new Orco();
+            const trollGiganteYPeludo = new Troll();
+
+            // Demostración en consola de que funcionan correctamente
+            console.log("---- Instancia de Enemigo ----");
+            console.log("Energía:", enemigoComun.energia);
+            enemigoComun.mover();
+
+            console.log("\n---- Instancia de Orco ----");
+            console.log("Energía:", orcoSalvaje.energia);
+            console.log("Fuerza:", orcoSalvaje.fuerza);
+            orcoSalvaje.mover();
+            orcoSalvaje.disparar();
+
+            console.log("\n---- Instancia de Troll ----");
+            console.log("Energía:", trollGiganteYPeludo.energia);
+            console.log("Fuerza:", trollGiganteYPeludo.fuerza);
+            trollGiganteYPeludo.mover();
+            trollGiganteYPeludo.golpear();
+        </script>
+
+        <!-- Autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 03/06/2026</p>
+    </body>
+</html>

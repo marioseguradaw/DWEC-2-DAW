@@ -1,0 +1,34 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 04/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DWEC_U03_A02_04</title>
+    </head>
+    <body>
+        <button id="boton">Pulsa el botón</button>
+
+        <script>
+            function saludar1() {
+                alert("¡Hola Mundo!");
+            }
+            let boton = document.getElementById("boton");
+
+            // Añadir manejador de eventos
+            boton.addEventListener("click", saludar1);
+
+            // Código...
+
+            // Eliminar manejador de eventos
+            // Hay que indicar de nuevo el evento y la función asociada
+            boton.removeEventListener("click", saludar1);
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 04/06/2026</p>
+    </body>
+</html>

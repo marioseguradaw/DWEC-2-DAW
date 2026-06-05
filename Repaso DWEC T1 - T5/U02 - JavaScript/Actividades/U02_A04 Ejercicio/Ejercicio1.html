@@ -1,0 +1,147 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 04/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cronómetro Profesional</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .cronometro-container {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .tiempo {
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 42px;
+                min-width: 180px;
+            }
+            button {
+                padding: 6px 18px;
+                font-size: 24px;
+                font-family: Arial, sans-serif;
+                cursor: pointer;
+                background-color: #fcfcfc;
+                border: 1px solid #8e8e8e;
+                border-radius: 4px;
+                color: #000000;
+                transition: all 0.1s ease;
+            }
+            /* Estilo exacto para cuando un botón está desactivado */
+            button:disabled {
+                background-color: #f0f0f0;
+                border-color: #d3d3d3;
+                color: #b0b0b0;
+                cursor: not-allowed;
+            }   
+        </style>
+    </head>
+    <body>
+        <div class="cronometro-container">
+            <div id="display" class="tiempo">00:00:00:00</div>
+        
+            <button id="btnArrancar">Arrancar</button>
+            <button id="btnParar" disabled>Parar</button>
+            <button id="btnContinuar" disabled>Continuar</button>
+            <button id="btnReiniciar" disabled>Reiniciar</button>
+        </div>
+
+        <script>
+            // Variables de control de tiempo continuo
+            let idIntervalo = null;
+            let tiempoInicio = 0;
+            let tiempoAcumulado = 0;
+            
+            // Elementos de la interfaz (DOM)
+            const display = document.getElementById('display');
+            const btnArrancar = document.getElementById('btnArrancar');
+            const btnParar = document.getElementById('btnParar');
+            const btnContinuar = document.getElementById('btnContinuar');
+            const btnReiniciar = document.getElementById('btnReiniciar');
+
+            // Función encargada de calcular el tiempo exacto transcurrido
+            function actualizarCronometro() {
+                // El tiempo actual es el momento presente menos cuando empezó, más lo que ya llevara acumulado
+                const tiempoActual = Date.now() - tiempoInicio + tiempoAcumulado;
+
+                // Desglose matemático exacto de milisegundos a horas, minutos y segundos
+                const horas = Math.floor(tiempoActual / 3600000);
+                const minutos = Math.floor((tiempoActual % 3600000) / 60000);
+                const segundos = Math.floor((tiempoActual % 60000) / 1000);
+                // Obtenemos las centésimas de segundo (los 2 dígitos de "milisegundos" de la pantalla)
+                const centesimas = Math.floor((tiempoActual % 1000) / 10);
+
+                // Formateamos para que siempre tengan dos dígitos (ej: "05" en vez de "5")
+                const h = String(horas).padStart(2, '0');
+                const m = String(minutos).padStart(2, '0');
+                const s = String(segundos).padStart(2, '0');
+                const c = String(centesimas).padStart(2, '0');
+
+                display.textContent = `${h}:${m}:${s}:${c}`;
+            }
+
+            // --- EVENTOS DE LOS BOTONES ---
+
+            // BOTÓN: ARRANCAR
+            btnArrancar.addEventListener('click', () => {
+                tiempoInicio = Date.now();
+                tiempoAcumulado = 0;
+                idIntervalo = setInterval(actualizarCronometro, 10); // Actualiza la pantalla en tiempo real
+
+                // Gestión de estados de botones
+                btnArrancar.disabled = true;
+                btnParar.disabled = false;
+                btnContinuar.disabled = true;
+                btnReiniciar.disabled = false;
+            });
+
+            // BOTÓN: PARAR
+            btnParar.addEventListener('click', () => {
+                clearInterval(idIntervalo);
+                // Guardamos el tiempo que llevábamos recorrido antes de congelar
+                tiempoAcumulado += Date.now() - tiempoInicio;
+
+                // Gestión de estados de botones
+                btnArrancar.disabled = true;
+                btnParar.disabled = true;
+                btnContinuar.disabled = false;
+                btnReiniciar.disabled = false;
+            });
+
+            // BOTÓN: CONTINUAR
+            btnContinuar.addEventListener('click', () => {
+                tiempoInicio = Date.now(); // Seteamos un nuevo punto de partida
+                idIntervalo = setInterval(actualizarCronometro, 10);
+
+                // Gestión de estados de botones
+                btnArrancar.disabled = true;
+                btnParar.disabled = false;
+                btnContinuar.disabled = true;
+                btnReiniciar.disabled = false;
+            });
+
+            // BOTÓN: REINICIAR
+            btnReiniciar.addEventListener('click', () => {
+                clearInterval(idIntervalo);
+                tiempoAcumulado = 0;
+                tiempoInicio = 0;
+                display.textContent = "00:00:00:00"; // Reseteo visual
+
+                // Volvemos al estado inicial idéntico al de la carga de la página
+                btnArrancar.disabled = false;
+                btnParar.disabled = true;
+                btnContinuar.disabled = true;
+                btnReiniciar.disabled = true;
+            });
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 04/06/2026</p>
+    </body>
+</html>
