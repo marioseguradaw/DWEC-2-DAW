@@ -1,11 +1,9 @@
 // Autor: Mario Segura Abad
-// Fecha: 05/06/2026
+// Fecha: 07/06/2026
 
 let presupuesto = 0;
-
-// ---- NUEVAS VARIABLES GLOBALES ----
 let gastos = [];
-let idGasto = 1;
+let idGasto = 0;
 
 // TODO: Funciones adicionales
 
@@ -23,51 +21,43 @@ function mostrarPresupuesto() {
     return `Tu presupuesto actual es de ${presupuesto} €`;
 }
 
-// ---- NUEVAS FUNCIONES GLOBALES DE LA LIBRERIA ----
-function listarGastos() {
-    return gastos;
-}
-
-// Añade un identificador al gasto, lo incrementa y lo guarda al final del array
+// Devuelve el array global de gastos
 function anyadirGasto(gasto) {
-    gasto.id = idGasto;
-    idGasto++;
+    gasto.id = idGasto++;
     gastos.push(gasto);
+    return gastos.length;
 }
 
-// Elimina del array el gasto con el id proporcionado
+// Reasigna el array global filtrando el ID que queremos eliminar
 function borrarGasto(id) {
-    const indice = gastos.findIndex(g => g.id === id);
-    if (indice !== -1) {
-        gastos.splice(indice, 1);
-    }
+    gastos = gastos.filter(g => g.id !== id);
 }
 
-// Calcula la suma total acumulada de todos los gastos
+// Calcula la suma dinámica de los valores actuales en el array global
 function calcularTotalGastos() {
-    return gastos.reduce((total, gasto) => total + gasto.valor, 0);
+    return gastos.reduce((total, g) => total + g.valor, 0);
 }
 
-// Devuelve el presupuesto restante disponible
+// Resta los gastos totales al presupuesto configurado
 function calcularBalance() {
     return presupuesto - calcularTotalGastos();
 }
 
-// ---- FUNCIÓN CONSTRUCTORA EXTENDIDA ----
+// Constructor con operador rest (...) para capturar todas las etiquetas enviadas de forma individual
 function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
     // Atributos
     this.descripcion = descripcion;
     this.valor = (typeof(valor) === "number" && valor >= 0) ? valor : 0;
 
-    // Control y asignacion de Fecha (Timestamps)
-    if (fecha && !isNaN(Date.parse(fecha))) {
-        this.fecha = Date.parse(fecha); // Guarda el timestamp válido
+    if (fecha) {
+        let parsed = Date.parse(fecha);
+        this.fecha = !isNaN(parsed) ? parsed : new Date().getTime();
     } else {
-        this.fecha = Date.now();
+        this.fecha = new Date().getTime();
     }
 
-    // Inicialización del listado de categorías/etiquetas
-    this.etiquetas = [];
+    // Almacenamos las etiquetas limpiando posibles valores vacíos
+    this.etiquetas = etiquetas.filter(e => typeof e === 'string' && e.trim() !== '');
 
     // Métodos
     this.mostrarGasto = function () {
@@ -82,48 +72,6 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
         this.descripcion = nuevaDescripcion;
     }
 
-    // ---- NUEVOS MÉTODOS DEL OBJETO GASTO ----
-
-    // Añade etiquetas evitando duplicados usando rest parameters
-    this.anyadirEtiquetas = function (...nuevasEtiquetas) {
-        nuevasEtiquetas.forEach(etiqueta => {
-            if (!this.etiquetas.includes(etiqueta)) {
-                this.etiquetas.push(etiqueta);
-            }
-        });
-    };
-
-    // Borra una o varias etiquetas si existen dentro del listado
-    this.borrarEtiquetas = function (...etiquetasABorrar) {
-        this.etiquetas = this.etiquetas.filter(etiqueta => !etiquetasABorrar.includes(etiqueta));
-    };
-
-    // Actualiza el timestamp si el formato string de la fecha es valido
-    this.actualizarFecha = function (nuevaFecha) {
-        if (nuevaFecha && !isNaN(Date.parse(nuevaFecha))) {
-            this.fecha = Date.parse(nuevaFecha);
-        }
-    };
-    
-    // Devuelve la representación en texto multilínea formateado
-    this.mostrarGastoCompleto = function () {
-        const fechaLocalizada = new Date(this.fecha).toLocaleDateString();
-        let resultadoFinal = `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €\n`;
-        resultadoFinal += `Fecha: ${fechaLocalizada}`;
-        resultadoFinal += `Etiquetas:`;
-
-        this.etiquetas.forEach(etiqueta => {
-            resultadoFinal += `\n${etiqueta}`;
-        });
-
-        return resultadoFinal;
-    };
-
-    // Al construir el objeto, si se pasaron etiquetas se procesan mediante el método
-    if (etiquetas.length > 0) {
-        this.anyadirEtiquetas(...this.etiquetas)
-    }
-
     /*if (valor >= 0) {
         this.valor = valor;
     } else {
@@ -135,10 +83,5 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
 export   {
     mostrarPresupuesto,
     actualizarPresupuesto,
-    listarGastos,
-    anyadirGasto,
-    borrarGasto,
-    calcularTotalGastos,
-    calcularBalance,
     CrearGasto
 }
