@@ -1,11 +1,9 @@
 // Autor: Mario Segura Abad
-// Fecha: 07/06/2026
+// Fecha: 09/06/2026
 
 let presupuesto = 0;
 let gastos = [];
 let idGasto = 0;
-
-// TODO: Funciones adicionales
 
 function actualizarPresupuesto(nuevoPresupuesto) {    
     if (nuevoPresupuesto >= 0) {
@@ -46,6 +44,64 @@ function calcularTotalGastos() {
 // Resta los gastos totales al presupuesto configurado
 function calcularBalance() {
     return presupuesto - calcularTotalGastos();
+}
+
+// Función global para filtrar los gastos segun criterios específicos
+function filtrarGastos(criterios = {}) {
+    return gastos.filter(gasto => {
+        // Filtro: fechaDesde
+        if (criterios.fechaDesde) {
+            let desde = Date.parse(criterios.fechaDesde);
+            if (!isNaN(desde) && gasto.fecha < desde) return false;
+        }
+        // Filtro: fechaHasta
+        if (criterios.fechaHasta) {
+            let hasta = Date.parse(criterios.fechaHasta);
+            if (!isNaN(hasta) && gasto.fecha > hasta) return false;
+        }
+        // Filtro: valorMinimo
+        if (criterios.valorMinimo !== undefined && criterios.valorMinimo !== null) {
+            if (gasto.valor < criterios.valorMinimo) return false;
+        }
+        // Filtro: valorMaximo
+        if (criterios.valorMaximo !== undefined && criterios.valorMaximo !== null) {
+            if (gasto.valor > criterios.valorMaximo) return false;
+        }
+        // Filtro: descripcionContiene
+        if (criterios.descripcionContiene) {
+            if (!gasto.descripcion.includes(criterios.descripcionContiene)) return false;
+        }
+        // Filtro: etiquetasTiene
+        if (criterios.etiquetasTiene && Array.isArray(criterios.etiquetasTiene) && criterios.etiquetasTiene.length > 0) {
+            let tieneAlguna = criterios.etiquetasTiene.some(etiqueta => gasto.etiquetas.includes(etiqueta));
+            if (!tieneAlguna) return false;
+        }
+        return true;
+    });
+}
+
+// Función global para agrupar los gastos filtrados por períodos de tiempo
+function agruparGastos(periodo, etiquetasTiene, fechaDesde, fechaHasta) {
+    // Construimos el objeto de criterios dinámicamente según los parámetros recibidos
+    let criterios = {};
+    if (etiquetasTiene) criterios.etiquetasTiene = etiquetasTiene;
+    if (fechaDesde) criterios.fechaDesde = fechaDesde;
+    if (fechaHasta) criterios.fechaHasta = fechaHasta;
+
+    // Obtenemos la lista de gastos que cumplen las condiciones
+    let gastosFiltrados = filtrarGastos(criterios);
+
+    // Agrupamos acumulando los valores en un objeto clave-valor
+    return gastosFiltrados.reduce((acc, gasto) => {
+        let claveTemporal = gasto.obtenerPeriodoAgrupacion(periodo);
+        if (claveTemporal) {
+            if (!acc[claveTemporal]) {
+                acc[claveTemporal] = 0;
+            }
+            acc[claveTemporal] += gasto.valor;
+        }
+        return acc;
+    }, {});
 }
 
 // Constructor con operador rest (...) para capturar todas las etiquetas enviadas de forma individual
@@ -110,6 +166,23 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
         mensaje += `\n`; // Salto de línea de cierre exigido por el test
         return mensaje;
     };
+
+    // Devuelve el periodo formateado de forma segura
+    this.obtenerPeriodoAgrupacion = function (periodo) {
+        let dia = new Date(this.fecha);
+        let yyyy = dia.getUTCFullYear();
+        let mm = String(dia.getUTCMonth() + 1).padStart(2, '0');
+        let dd = String(dia.getUTCDate()).padStart(2, '0');
+
+        if (periodo === "anyo") {
+            return `${yyyy}`;
+        } else if (periodo === "mes") {
+            return `${yyyy}-${mm}`;
+        } else if (periodo === "dia") {
+            return `${yyyy}-${mm}-${dd}`;
+        }
+        return null;
+    };
 }
 
 // Exportación de funciones
@@ -121,5 +194,7 @@ export   {
     borrarGasto,
     calcularTotalGastos,
     calcularBalance,
-    CrearGasto
-}
+    CrearGasto,
+    filtrarGastos,
+    agruparGastos
+};

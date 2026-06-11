@@ -1,0 +1,48 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 10/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DWEC_U03_A03_01</title>
+    </head>
+    <body>
+        <form name="datospersonales">
+            <input name="nombre" type="text" value="José">
+            <input name="apellido" type="text" value="Pérez">
+        </form>
+
+        <form name="datoslaborales">
+            <input name="profesion" type="text" value="desarrollador web">
+            <div class="detalles">
+                <input name="cargo" type="text" value="programador junior">
+            </div>
+        </form>
+
+        <script>
+            let formularioDatosPersonales = document.forms.datospersonales;
+            // o también mediante document.forms[0]
+
+            let formularioDatosLaborales = document.forms.datoslaborales;
+            // o también mediante document.forms[1]
+
+            let nombre = formularioDatosPersonales.elements.nombre.value; // José
+            let apellidos = formularioDatosPersonales.elements.apellido.value; // Pérez
+
+            let profesion = formularioDatosLaborales.elements.cargo.value; // programador junior
+
+            /* A través de su propiedad form */
+            let formularioDatosPersonales2 = document.forms.datospersonales;
+            let elementoNombre = formularioDatosPersonales2.elements.nombre;
+
+            // Acceso al formulario desde el campo
+            console.log(elementoNombre.form); // Elemento <form name="datospersonales">
+        </script>
+
+        <!-- Prueba de autoría -->
+        <br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 10/06/2026</p>
+    </body>
+</html>

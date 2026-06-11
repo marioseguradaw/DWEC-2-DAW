@@ -1,0 +1,41 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 10/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DWEC_U03_A02_08</title>
+    </head>
+    <body>
+        <script>
+            let personas = [
+                {
+                    nombre: "Ana",
+                    apellido: "López"
+                },
+                {
+                    nombre: "Inés",
+                    apellido: "García"
+                }
+            ];
+
+            let editarPersona = {
+                handleEvent: function (evento) {
+                    alert(`Editando datos de ${this.datosPersona.nombre} ${this.datosPersona.apellido}`);
+                }
+            }
+
+            let borrarPersona = {
+                handleEvent: function (evento) {
+                    alert(`Borrando datos de ${this.datosPersona.nombre} ${this.datosPersona.apellido}`);
+                }
+            }
+        </script>
+
+        <!-- Prueba de autoria -->
+        <br><p>Autor: <strong>Mario Segura Abad</strong></p>
+        <p>Fecha de realización: 10/06/2026</p>
+    </body>
+</html>

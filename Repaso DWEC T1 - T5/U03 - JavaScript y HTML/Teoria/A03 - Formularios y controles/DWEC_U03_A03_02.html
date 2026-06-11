@@ -1,0 +1,43 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 10/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DWEC_U03_A03_02</title>
+    </head>
+    <body>
+        <form name="encuesta">
+            <div>
+                Indica tu edad:
+                <input name="edad" type="radio" value="menor20">
+                <input name="edad" type="radio" value="mayor20" checked>
+            </div>
+            <div>
+                Selecciona tus opciones de suscripcion:
+                <input name="suscripcion" type="checkbox" value="javascript" checked>
+                <input name="suscripcion" type="checkbox" value="java">
+                <input name="suscripcion" type="checkbox" value="go" checked>
+            </div>
+        </form>
+
+        <script>
+            let formularioEncuesta = document.forms.encuesta;
+
+            let elementosEdad = formularioEncuesta.elements.edad;
+            console.log(elementosEdad[0]); // Elemento <input name="edad" type="radio" value="menor20">
+            console.log(elementosEdad[1]); // Elemento <input name="edad" type="radio" value="mayor20" checked>
+
+            console.log(elementosEdad.value); // mayor20
+            console.log(elementosEdad[0].checked); // false
+            console.log(elementosEdad[1].checked); // true
+
+            // Activamos la primera opción desde JavaScript
+            elementosEdad[0].checked = true;
+            // Comprobamos
+            console.log(elementosEdad.value); // menor20
+        </script>
+    </body>
+</html>
