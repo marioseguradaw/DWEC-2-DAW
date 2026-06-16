@@ -36,8 +36,41 @@
 
             // Activamos la primera opción desde JavaScript
             elementosEdad[0].checked = true;
-            // Comprobamos
+            // Comprobamos los cambios
             console.log(elementosEdad.value); // menor20
+            console.log(elementosEdad[0].checked); // true
+            console.log(elementosEdad[1].checked); // false
+
+            let elementosSuscripcion = formularioEncuesta.elements.suscripcion;
+            console.log(elementosSuscripcion[0]); // Elemento <input name="suscripcion" type="checkbox" value="javascript" checked>
+            console.log(elementosSuscripcion[1]); // Elemento <input name="suscripcion" type="checkbox" value="java">
+            console.log(elementosSuscripcion[2]); // Elemento <input name="suscripcion" type="checkbox" value="go" checked>
+
+            console.log(elementosSuscripcion.value); // "" (cadena vacía)
+            console.log(elementosSuscripcion[0].checked); // true
+            console.log(elementosSuscripcion[1].checked); // false
+            console.log(elementosSuscripcion[2].checked); // true
+        </script>
+
+        <select id="lenguaje">
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="go">Go</option>
+        </select>
+
+        <script>
+            let lenguajeSelect = document.getElementById("lenguaje");
+            lenguajeSelect.options[2].selected = true; // Opción 2
+            console.log(lenguajeSelect.value); // go
+            console.log(lenguajeSelect.selectedIndex); // 2
+
+            lenguajeSelect.selectedIndex = 1; // Opción 1
+            console.log(lenguajeSelect.value); // java
+            console.log(lenguajeSelect.selectedIndex); // 1
+
+            lenguajeSelect.value = "javascript"; // Opción 0
+            console.log(lenguajeSelect.value); // javascript
+            console.log(lenguajeSelect.selectedIndex); // 0
         </script>
     </body>
 </html>

@@ -1,0 +1,36 @@
+<!-- Autor: Mario Segura Abad -->
+<!-- Fecha: 15/06/2026 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestor de gastos API</title>
+        <link rel="stylesheet" href="./css/estilos.css">
+    </head>
+    <body>
+        <h1>Gestor de gastos (API REST)</h1>
+
+        <!-- Formulario de selección de usuario -->
+        <form id="form-usuario">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" placeholder="usuario1" required>
+
+            <button type="submit">Cargar gastos</button>
+        </form>
+
+        <hr>
+
+        <!-- Total de gastos -->
+        <div id="total-gastos"></div>
+
+        <!-- Formulario de alta de gasto -->
+        <div id="form-gasto"></div>
+
+        <!-- Listado de gastos -->
+        <div id="listado-gastos"></div>
+
+        <script type="module" src="./js/gestionPresupuesto_api.js"></script>
+    </body>
+</html>
