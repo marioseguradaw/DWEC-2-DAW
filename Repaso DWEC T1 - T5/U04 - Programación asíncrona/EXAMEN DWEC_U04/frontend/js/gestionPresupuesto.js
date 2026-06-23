@@ -101,8 +101,12 @@ function anyadirGasto(gasto) {
     gastos.push(gasto); // "gasto.id = idGasto" se le asigna un identificador único al gasto, si eso se cumple el contador global incrementa y añade el gasto al array de gastos
 }
 
-function borrarGasto(id) {
-    gastos = gastos.filter(gasto => gasto.id !== id); // Conserva sólo aquellos gastos cuyo id sea diferente al que se quiere eliminar
+function cargarGastos(gastosArray) {
+  gastos = gastosArray;
+}
+
+function borrarGasto(idGasto) {
+    gastos = gastos.filter(gasto => gasto.id !== idGasto); // Conserva sólo aquellos gastos cuyo id sea diferente al que se quiere eliminar
 }
 
 function calcularTotalGastos() {
@@ -183,5 +187,6 @@ export   {
   calcularBalance,
   filtrarGastos,
   agruparGastos,
-  sobrescribirGastos
+  sobrescribirGastos,
+  cargarGastos
 };

@@ -7,10 +7,13 @@ import {
     borrarGasto,
     listarGastos,
     calcularTotalGastos,
-    sobrescribirGastos
+    sobrescribirGastos,
+    cargarGastos
 } from "./gestionPresupuesto.js";
 
 const STORAGE_KEY = "misGastos";
+let gastos = [];
+let usuarioActual = "";
 
 // Mostrar total
 function mostrarTotal() {
@@ -25,26 +28,38 @@ function mostrarListado() {
 
     listarGastos().forEach(gasto => {
         const gastoDiv = document.createElement("div");
-        gastoDiv.textContent = `${gasto.descripcion} - ${gasto.valor} € - ${new Date(gasto.fecha).toLocaleDateString()} - [${gasto.etiquetas.join(", ")}]`;
+        gastoDiv.textContent = `${gasto.descripcion} - ${gasto.valor} € - ${new Date(gasto.fecha).toLocaleDateString()}`;
+
+        listadoDiv.appendChild(gastoDiv);
 
         const botonBorrar = document.createElement("button");
         botonBorrar.textContent = "Borrar";
         botonBorrar.addEventListener("click", () => {
             if(confirm("¿Seguro que quieres borrar este gasto?")) {
-                borrarGasto(gasto.id);
-                mostrarListado();
-                mostrarTotal();
+                borrarGastoAPI(gasto.id);
+                // mostrarListado();
+                // mostrarTotal();
             }
         });
 
         gastoDiv.appendChild(botonBorrar);
-        listadoDiv.appendChild(gastoDiv);
+
+        const botonEditar = document.createElement("button");
+        botonEditar.textContent = "Editar";
+        botonEditar.addEventListener("click", () => {
+            const nuevaDescripcion = prompt("Nueva descripción:", gasto.descripcion);
+            const nuevoValor = prompt("Nuevo valor:", gasto.valor);
+
+            actualizarGastoAPI(gasto.id, nuevaDescripcion, parseFloat(nuevoValor), gasto.fecha);
+        });
+
+        gastoDiv.appendChild(botonEditar);
     });
 }
 
 // Crear formulario
 function crearFormulario() {
-    const formDiv = document.getElementById("formulario-gasto");
+    const formDiv = document.getElementById("form-gasto");
     const form = document.createElement("form");
 
     const inputDesc = document.createElement("input");
@@ -55,6 +70,7 @@ function crearFormulario() {
     inputValor.type = "number";
     inputValor.placeholder = "Valor";
     inputValor.required = true;
+    inputValor.step = "0.01";
 
     const inputFecha = document.createElement("input");
     inputFecha.type = "date";
@@ -84,7 +100,7 @@ function crearFormulario() {
             ...inputEtiquetas.value.split(",").map(etiqueta => etiqueta.trim()).filter(etiqueta => etiqueta)
         );
 
-        anyadirGasto(gasto);
+        anyadirGastoAPI(gasto);
         mostrarListado();
         mostrarTotal();
 
@@ -93,14 +109,14 @@ function crearFormulario() {
 }
 
 // Guardar en LocalStorage
-function guardarGastos() {
+/* function guardarGastos() {
     const gastos = listarGastos();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(gastos));
     alert("Gastos guardados en almacenamiento local.");
-}
+} */
 
 // Recuperar de LocalStorage
-function recuperarGastos() {
+/* function recuperarGastos() {
     const datos = localStorage.getItem(STORAGE_KEY);
     if(datos) {
         const gastosPlano = JSON.parse(datos);
@@ -118,12 +134,94 @@ function recuperarGastos() {
     } else {
         alert("No hay datos guardados.");
     }
+} */
+
+// Funciones de la API
+function cargarGastosAPI() {
+    usuarioActual = document.getElementById("usuario").value.trim();
+
+    if (!usuarioActual) {
+        alert("Primero debe introducir un usuario en el formulario.");
+        return;
+    }
+
+    fetch(`http://localhost:3000/${usuarioActual}`)
+        .then(respuesta => respuesta.json())
+        .then(datos => {
+            gastos = datos;
+
+            cargarGastos(datos);
+            mostrarListado();
+            mostrarTotal();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error al cargar los gastos. Inténtelo de nuevo");
+        });
 }
 
-// Inicialización
+function anyadirGastoAPI(gasto) {
+    fetch(`http://localhost:3000/${usuarioActual}`,
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(gasto)
+        }
+    )
+    .then(() => {
+        cargarGastosAPI();
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+function borrarGastoAPI(idGasto) {
+    fetch(`http://localhost:3000/${usuarioActual}/${idGasto}`,
+        {
+            method: "DELETE"
+        }
+    )
+    .then(() => {
+        cargarGastosAPI();
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+function actualizarGastoAPI(gastoId, descripcion, valor, fecha) {
+    const gastoActualizado = {
+        descripcion,
+        valor,
+        fecha
+    };
+
+    fetch(`http://localhost:3000/${usuarioActual}/${gastoId}`,
+        {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(gastoActualizado)
+        }
+    )
+    .then(() => {
+        cargarGastosAPI();
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+// Inicialización  
 crearFormulario();
 mostrarListado();
 mostrarTotal();
 
-document.getElementById("guardar-gastos").addEventListener("click", guardarGastos);
-document.getElementById("recuperar-gastos").addEventListener("click", recuperarGastos);
+document.getElementById("form-usuario");
+document.addEventListener("submit", event => {
+    event.preventDefault();
+    cargarGastosAPI();
+});
+
+// document.getElementById("guardar-gastos").addEventListener("click", guardarGastos);
+// document.getElementById("recuperar-gastos").addEventListener("click", recuperarGastos);

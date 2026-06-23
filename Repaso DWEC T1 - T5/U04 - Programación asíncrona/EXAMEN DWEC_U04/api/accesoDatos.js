@@ -1,3 +1,7 @@
+// Autor: Mario Segura Abad
+// Fecha: 20/06/2026
+
+
 // Librería de acceso a datos
 
 // Acceso a las funciones de lectura/escritura de ficheros en NodeJS en forma de promesas

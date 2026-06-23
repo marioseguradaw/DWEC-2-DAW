@@ -1,3 +1,7 @@
+// Autor: Mario Segura Abad
+// Fecha: 20/06/2026
+
+
 // Módulo para crear APIs en NodeJS
 import express from 'express';
 
